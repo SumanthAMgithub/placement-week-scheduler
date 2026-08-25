@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Placement Week Scheduler</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="header">
+
+        <div>
+            <h1>Placement Week Scheduler</h1>
+            <p>Coordinator Dashboard</p>
+        </div>
+
+        <div class="status">
+            <span class="status-dot"></span>
+            Backend Connected
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+        <!-- Metrics -->
+
+        <section class="metrics">
+
+            <div class="metric-card">
+                <h3>Total Students</h3>
+                <p id="totalStudents">-</p>
+            </div>
+
+            <div class="metric-card">
+                <h3>Shortlisted Interviews</h3>
+                <p id="totalShortlisted">-</p>
+            </div>
+
+            <div class="metric-card">
+                <h3>Scheduled Interviews</h3>
+                <p id="scheduledInterviews">-</p>
+            </div>
+
+            <div class="metric-card">
+                <h3>Unscheduled</h3>
+                <p id="unscheduledInterviews">-</p>
+            </div>
+
+            <div class="metric-card">
+                <h3>Scheduling Rate</h3>
+                <p id="schedulingRate">-</p>
+            </div>
+
+        </section>
+
+
+        <!-- Actions -->
+
+        <section class="actions">
+
+            <button onclick="generateSchedule()">
+                Generate Schedule
+            </button>
+
+            <button onclick="loadDashboard()">
+                Refresh Schedule
+            </button>
+
+            <button onclick="resetSchedule()" class="danger">
+                Reset Schedule
+            </button>
+
+        </section>
+
+
+        <!-- Schedule -->
+
+        <section class="card">
+
+            <div class="section-header">
+
+                <h2>Upcoming Interviews</h2>
+
+                <span id="scheduleCount">
+                    0 interviews
+                </span>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Student</th>
+                            <th>Company</th>
+                            <th>Room</th>
+                            <th>Panel</th>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="scheduleTable">
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <!-- Pagination -->
+
+            <div class="pagination">
+
+                <button
+                    id="previousButton"
+                    onclick="previousPage()">
+                    Previous
+                </button>
+
+                <span id="pageInfo">
+                    Page 1
+                </span>
+
+                <button
+                    id="nextButton"
+                    onclick="nextPage()">
+                    Next
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- System Message -->
+
+        <section class="card">
+
+            <h2>System Message</h2>
+
+            <p id="message">
+                Dashboard ready.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
