@@ -1,6 +1,10 @@
 from datetime import datetime
 
 
+# ============================================================
+# 1. TIME OVERLAP
+# ============================================================
+
 def times_overlap(
     start_time: datetime,
     end_time: datetime,
@@ -8,7 +12,21 @@ def times_overlap(
     existing_end: datetime
 ) -> bool:
     """
-    Check whether two time intervals overlap.
+    Return True when two time intervals overlap.
+
+    Example:
+
+        10:00 - 10:30
+        10:15 - 10:45
+
+    These overlap.
+
+    But:
+
+        10:00 - 10:30
+        10:30 - 11:00
+
+    do NOT overlap.
     """
 
     return (
@@ -17,6 +35,10 @@ def times_overlap(
     )
 
 
+# ============================================================
+# 2. STUDENT CONFLICT
+# ============================================================
+
 def check_student_conflict(
     student_id: int,
     start_time: datetime,
@@ -24,8 +46,8 @@ def check_student_conflict(
     scheduled_interviews: list
 ) -> bool:
     """
-    Returns True if the student is already scheduled
-    during the requested time.
+    Check whether the student already has another
+    interview during the requested time.
     """
 
     for interview in scheduled_interviews:
@@ -44,6 +66,10 @@ def check_student_conflict(
     return False
 
 
+# ============================================================
+# 3. ROOM CONFLICT
+# ============================================================
+
 def check_room_conflict(
     room_id: int,
     start_time: datetime,
@@ -51,7 +77,7 @@ def check_room_conflict(
     scheduled_interviews: list
 ) -> bool:
     """
-    Returns True if the room is already occupied
+    Check whether the room is already occupied
     during the requested time.
     """
 
@@ -71,6 +97,10 @@ def check_room_conflict(
     return False
 
 
+# ============================================================
+# 4. PANEL CONFLICT
+# ============================================================
+
 def check_panel_conflict(
     panel_id: int,
     start_time: datetime,
@@ -78,7 +108,7 @@ def check_panel_conflict(
     scheduled_interviews: list
 ) -> bool:
     """
-    Returns True if the panel is already occupied
+    Check whether the panel is already occupied
     during the requested time.
     """
 
@@ -98,6 +128,10 @@ def check_panel_conflict(
     return False
 
 
+# ============================================================
+# 5. ALL CONFLICTS
+# ============================================================
+
 def check_all_conflicts(
     student_id: int,
     room_id: int,
@@ -107,28 +141,28 @@ def check_all_conflicts(
     scheduled_interviews: list
 ) -> dict:
     """
-    Check all major scheduling conflicts.
+    Check student, room and panel conflicts.
     """
 
     student_conflict = check_student_conflict(
-        student_id,
-        start_time,
-        end_time,
-        scheduled_interviews
+        student_id=student_id,
+        start_time=start_time,
+        end_time=end_time,
+        scheduled_interviews=scheduled_interviews
     )
 
     room_conflict = check_room_conflict(
-        room_id,
-        start_time,
-        end_time,
-        scheduled_interviews
+        room_id=room_id,
+        start_time=start_time,
+        end_time=end_time,
+        scheduled_interviews=scheduled_interviews
     )
 
     panel_conflict = check_panel_conflict(
-        panel_id,
-        start_time,
-        end_time,
-        scheduled_interviews
+        panel_id=panel_id,
+        start_time=start_time,
+        end_time=end_time,
+        scheduled_interviews=scheduled_interviews
     )
 
     return {
